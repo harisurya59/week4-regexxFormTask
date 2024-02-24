@@ -1,0 +1,61 @@
+<style>
+    .nameerror,.emailerror,.phoneerror{
+        color: red;
+        display: none;
+    }
+</style>
+
+<div>
+    <form >
+        <input type="text" placeholder="Name" id="name">
+        <span class="nameerror">Name must contain only letter</span><br>
+        <input type="text"placeholder="Email" id="email">
+        <span class="emailerror">Please provide vaid gamil address</span><br>
+        <input type="text" placeholder="Phone" id="Phone">
+        <span class="phoneerror">Phone number must only 10 digits</span><br>
+        <input type="submit" id="submit">
+    </form>
+</div>
+
+<script>
+    var submit = document.getElementById("submit")
+
+    submit.addEventListener("click",function(){
+        event.preventDefault()
+
+        var nameRegex = /^[a-zA-Z]+$/g
+        var emailregex = /^[a-zA-Z0-9]+@gmail\.com/
+        var phoneRegex = /^\d{10}$/
+
+        var name = document.getElementById("name")
+        var email = document.getElementById("email")
+        var phone = document.getElementById("phone")
+
+    var validation = true
+
+        if(nameRegex.test(name.value) == false){
+            document.querySelector(".nameerror").style.display = "inline"
+            validation = false
+        } else {
+            document.querySelector(".nameerror").style.display = "none"
+        }
+        
+        if(emailregex.test(email.value) == false){
+            document.querySelector(".emailerror").style.display = "inline"
+            validation = false
+        } else {
+            document.querySelector(".emailerror").style.display = "none"
+        }
+
+        if(phoneRegex.test(phone.value) == false){
+            document.querySelector(".phoneerror").style.display = "inline"
+            validation = false
+        } else {
+            document.querySelector(".phoneerror").style.display = "none"
+        }
+
+        if(validation == true){
+            alert("form submit sucessfully")
+        }
+    })
+</script>
